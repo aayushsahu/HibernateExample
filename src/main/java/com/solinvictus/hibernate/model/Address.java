@@ -1,8 +1,6 @@
 package com.solinvictus.hibernate.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
 @Embeddable
 public class Address {

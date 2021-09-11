@@ -9,14 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 
 @Entity
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@Column(name = "employee_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long employeeId;
 	
 	@Column(name = "name")
@@ -28,6 +30,10 @@ public class Employee {
 	@Column(name = "joining_date")
 	private Date dateOfJoining;
 	
+	@ManyToOne
+	@JoinColumn(name= "department_id")
+	private Department department;
+
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name= "houseNo", column = @Column(name = "house_no")),
@@ -45,6 +51,7 @@ public class Employee {
 		this.dateOfJoining = dateOfJoining;
 		this.address = address;
 	}
+	
 	public Employee() {
 		
 	}
@@ -81,4 +88,10 @@ public class Employee {
 		this.address = address;
 	}
 	
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 }
