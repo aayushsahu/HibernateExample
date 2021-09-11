@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.solinvictus.hibernate.model.Address;
+import com.solinvictus.hibernate.model.Asset;
 import com.solinvictus.hibernate.model.Department;
 import com.solinvictus.hibernate.model.Employee;
 import com.solinvictus.hibernate.util.HibernateUtil;
@@ -25,6 +26,16 @@ public class HibernateAnnotationMain {
 		Employee e7 = new Employee("Panda", 26, new Date() ,new Address("25", "Metro greens", "Saddu", "Raipur", "CG"));
 		Employee e8 = new Employee("Ayush", 26, new Date() ,new Address("26", "Metro greens", "Saddu", "Raipur", "CG"));
 		
+		Asset a1 = new Asset("Lenovo", "Thinkpad T480", "");
+		Asset a2 = new Asset("Lenovo", "Thinkpad T480", "");
+		Asset a3 = new Asset("Lenovo", "Thinkpad T480", "");
+		Asset a4 = new Asset("Lenovo", "Thinkpad T470", "");
+		Asset a5 = new Asset("Lenovo", "Thinkpad T470", "");
+		Asset a6 = new Asset("Lenovo", "Thinkpad T470", "");
+		Asset a7 = new Asset("Lenovo", "Thinkpad T470", "");
+		Asset a8 = new Asset("Lenovo", "Thinkpad T470", "");
+		Asset a9 = new Asset("Lenovo", "Thinkpad T470", "");
+		Asset a10 = new Asset("Lenovo", "Thinkpad T470", "");
 		
 		Department d1 = new Department("IT" );
 		Department d2 = new Department("Operations");
@@ -40,6 +51,27 @@ public class HibernateAnnotationMain {
 		e7.setDepartment(d3);
 		e8.setDepartment(d3);
 		
+		//set asset for Employee
+		e1.setAsset(a1);
+		e2.setAsset(a2);
+		e3.setAsset(a3);
+		e4.setAsset(a4);
+		e5.setAsset(a5);
+		e6.setAsset(a6);
+		e7.setAsset(a7);
+		e8.setAsset(a8);
+		
+		//set Employee to asset
+		a1.setEmployee(e1);
+		a2.setEmployee(e2);
+		a3.setEmployee(e3);
+		a4.setEmployee(e4);
+		a5.setEmployee(e5);
+		a6.setEmployee(e6);
+		a7.setEmployee(e7);
+		a8.setEmployee(e8);
+		a9.setEmployee(null);
+		a10.setEmployee(null);
 		
 		//set Employee list in Department object
 		Set<Employee> s1= new HashSet<Employee>();
@@ -81,6 +113,17 @@ public class HibernateAnnotationMain {
 		session.save(d1);
 		session.save(d2);
 		session.save(d3);
+		
+		session.save(a1);
+		session.save(a2);
+		session.save(a3);
+		session.save(a4);
+		session.save(a5);
+		session.save(a6);
+		session.save(a7);
+		session.save(a8);
+		session.save(a9);
+		session.save(a10);
 		
 		//Commit transaction
 		session.getTransaction().commit();

@@ -23,6 +23,7 @@
 		<!-- Mapping with model class containing annotations -->
 		<mapping class="com.solinvictus.hibernate.model.Employee"/>
 		<mapping class="com.solinvictus.hibernate.model.Department"/>
+		<mapping class="com.solinvictus.hibernate.model.Asset"/>
 	</session-factory>
 </hibernate-configuration>
 
