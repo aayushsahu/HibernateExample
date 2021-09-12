@@ -11,6 +11,7 @@ import com.solinvictus.hibernate.model.Address;
 import com.solinvictus.hibernate.model.Asset;
 import com.solinvictus.hibernate.model.Department;
 import com.solinvictus.hibernate.model.Employee;
+import com.solinvictus.hibernate.model.Project;
 import com.solinvictus.hibernate.util.HibernateUtil;
 
 public class HibernateAnnotationMain {
@@ -40,6 +41,11 @@ public class HibernateAnnotationMain {
 		Department d1 = new Department("IT" );
 		Department d2 = new Department("Operations");
 		Department d3 = new Department("Sales");
+		
+		Project p1 = new Project("Client1", "Project1", "Desc Of project1");
+		Project p2 = new Project("Client2", "Project2", "Desc Of project2");
+		Project p3 = new Project("Client1", "Project3", "Desc Of project3");
+		Project p4 = new Project("Client1", "Project4", "Desc Of project4");
 		
 		//set Department of Employee
 		e1.setDepartment(d1);
@@ -87,11 +93,62 @@ public class HibernateAnnotationMain {
 		Set<Employee> s3= new HashSet<Employee>();
 		s3.add(e7);
 		s3.add(e8);
-		s3.add(e1);
 		
 		d1.setEmployees(s1);
 		d2.setEmployees(s2);
 		d3.setEmployees(s3);
+		
+		//set of Employees for Project
+		Set<Employee> s4= new HashSet<Employee>();
+		s4.add(e1);
+		s4.add(e2);
+		s4.add(e4);
+		s4.add(e7);
+		p1.setEmployees(s4);
+		
+		Set<Employee> s5= new HashSet<Employee>();
+		s5.add(e1);
+		s5.add(e3);
+		s5.add(e5);
+		s5.add(e8);
+		p2.setEmployees(s5);
+		
+		Set<Employee> s6= new HashSet<Employee>();
+		s6.add(e2);
+		s6.add(e3);
+		s6.add(e6);
+		s6.add(e8);		
+		p3.setEmployees(s6);
+		
+		//set of Projects for Employees
+		Set<Project> ps1 = new HashSet<Project>();
+		Set<Project> ps2 = new HashSet<Project>();
+		Set<Project> ps3 = new HashSet<Project>();
+		Set<Project> ps4 = new HashSet<Project>();
+		Set<Project> ps5 = new HashSet<Project>();
+		Set<Project> ps6 = new HashSet<Project>();
+		Set<Project> ps7 = new HashSet<Project>();
+		Set<Project> ps8 = new HashSet<Project>();
+		
+		ps1.add(p1);
+		ps1.add(p2);
+		
+		ps2.add(p1);
+		ps2.add(p3);
+		
+		ps3.add(p2);
+		ps3.add(p3);
+		
+		ps4.add(p1);
+		
+		ps5.add(p2);
+		
+		ps6.add(p3);
+		
+		ps7.add(p1);
+		
+		ps8.add(p2);
+		ps8.add(p3);
 		
 		//Get Session
 		SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory();
@@ -124,6 +181,10 @@ public class HibernateAnnotationMain {
 		session.save(a8);
 		session.save(a9);
 		session.save(a10);
+		
+		session.save(p1);
+		session.save(p2);
+		session.save(p3);	
 		
 		//Commit transaction
 		session.getTransaction().commit();

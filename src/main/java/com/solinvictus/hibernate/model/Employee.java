@@ -1,6 +1,7 @@
 package com.solinvictus.hibernate.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Column;
@@ -40,6 +43,13 @@ public class Employee {
 	@JoinColumn(name = "asset_id", referencedColumnName = "asset_id")
 	private Asset asset;
 
+	@ManyToMany
+	@JoinTable(
+		name = "employee_project",
+		joinColumns = @JoinColumn(name = "employee_id"),
+		inverseJoinColumns = @JoinColumn(name = "project_id"))
+	private Set<Project> projects;
+	
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "houseNo", column = @Column(name = "house_no")),
 			@AttributeOverride(name = "locality", column = @Column(name = "locality")),

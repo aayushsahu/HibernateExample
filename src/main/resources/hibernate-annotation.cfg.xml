@@ -24,6 +24,7 @@
 		<mapping class="com.solinvictus.hibernate.model.Employee"/>
 		<mapping class="com.solinvictus.hibernate.model.Department"/>
 		<mapping class="com.solinvictus.hibernate.model.Asset"/>
+		<mapping class="com.solinvictus.hibernate.model.Project"/>
 	</session-factory>
 </hibernate-configuration>
 
